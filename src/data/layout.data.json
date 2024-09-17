@@ -1,0 +1,54 @@
+{
+  "navMenu": [
+    {
+      "title": "Solutions",
+      "url": "#",
+      "subMenu": [
+        {
+          "title": "Acquiring",
+          "url": "./acquiring.html"
+        },
+        {
+          "title": "Alternative Payments",
+          "url": "./payments.html"
+        },
+        {
+          "title": "Payouts",
+          "url": "./payouts.html"
+        }
+      ]
+    },
+    {
+      "title": "Tools",
+      "url": "#",
+      "subMenu": [
+        {
+          "title": "Currency conversion",
+          "url": "./conversion.html"
+        },
+        {
+          "title": "Integration support",
+          "url": "./Integrations.html"
+        },
+        {
+          "title": "Fraud and chargeback management",
+          "url": "./management.html"
+        }
+      ]
+    },
+    {
+      "title": "Company",
+      "url": "#",
+      "subMenu": [
+        {
+          "title": "About us",
+          "url": "./company.html"
+        },
+        {
+          "title": "Privacy policy",
+          "url": "./privacy.html"
+        }
+      ]
+    }
+  ]
+}

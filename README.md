@@ -1,38 +1,228 @@
-# webpack-express-boilerplate
-A boilerplate for running a Webpack workflow in Node express
+# xsell.money
 
-Please read the following article: [The ultimate Webpack setup](http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup) to know more about this boilerplate.
+## ⚗️ Features
 
-## Major update to project
-Inspired by [this project](https://github.com/vesparny/react-kickstart) and the evolving of [react-transform](https://github.com/gaearon/react-transform-boilerplate) and [CSS Modules]((http://glenmaddern.com/articles/css-modules)), this project has gotten a major upgrade.
+- [Webpack](https://webpack.js.org)
+- [Nunjucks](https://mozilla.github.io/nunjucks) (supports multiple pages)
+- [Babel](https://babeljs.io)
+- [TypeScript](https://typescriptlang.org) (disabled by default)
+- [ESLint](https://eslint.org)
+- [Sass](https://sass-lang.com)
+- [PostCSS](https://postcss.org)
+- [StyleLint](https://stylelint.io)
+- [SVG Sprite](https://github.com/JetBrains/svg-sprite-loader)
 
-**NOTE!** Use the latest version of Node, 4.x.x.
+<br/>
 
-## Install and Running
-`git clone https://github.com/christianalfoni/webpack-express-boilerplate.git`
+## 🚀 Usage
 
-or just export the files:
+```bash
 
-`svn export https://github.com/christianalfoni/webpack-express-boilerplate/trunk ./dir`
+# Install dependencies
+yarn          # npm install
 
-1. cd webpack-express-boilerplate
-2. npm install
-3. npm start
-4. navigate to http://localhost:3000 in your browser of choice.
+# Run webpack-dev-server and let the magic happen
+yarn start    # npm start
 
+# Build the project from sources
+yarn build    # npm run-script build
 
-## Overview
+```
 
-### React by default
-The project runs with React by default and hot replacement of changes to the modules. Currently it is on 0.14.3.
+<br/>
 
-### CSS Modules
-CSS files loaded into components are locally scoped and you can point to class names with javascript. You can also compose classes together, also from other files. These are also hot loaded. Read more about them [here](http://glenmaddern.com/articles/css-modules).
+## 💻 Available Scripts
 
-To turn off CSS Modules remove it from the `webpack.config.js` file.
+- `serve` - run the `webpack-dev-server`
+- `build` - build the project
 
-### Babel and Linting
-Both Node server and frontend code runs with Babel. And all of it is linted. With atom you install the `linter` package, then `linter-eslint` and `linter-jscs`. You are covered. Also run `npm run eslint` or `npm run jscs` to verify all files. I would recommend installing `language-babel` package too for syntax highlighting
+<br/>
 
-### Beautify
-With a beautify package installed in your editor it will also do that
+## 📘 Documentation
+
+### TypeScript Support
+
+By default, TypeScript support is disabled. To enable it, set the `TS_SUPPORT` environment variable to `true` in `package.json`.
+
+```bash
+... TS_SUPPORT=true ...
+```
+
+### Multiple pages
+
+Just create nunjucks files in `src` folder
+
+```
+┣━ js
+┣━ njk
+┣━ sass
+┣━ home.njk
+┣━ page1.njk
+┣━ page2.njk
+```
+
+### SCSS files
+
+Just import SCSS files with extension:
+
+```sass
+// app.sass
+// ...
+@import common
+@import another.scss
+// ...
+```
+
+### SVG sprite
+
+1. Import SVG icon
+
+```javascript
+// src/js/dev/icons.js
+import '@/icons/github.svg'
+```
+
+2. Use this icon in your template
+
+<!-- prettier-ignore -->
+```javascript
+// *.njk z
+{{ icon('github', 'custom-class-name') }}
+```
+
+### Environment variables
+
+#### `NODE_ENV`
+
+> Type: `'development' | 'production' | none` <br/>
+> Default: `'development'`
+
+Indicates the current mode.
+
+#### `OUTPUT_DIR`
+
+> Type: `string` <br/>
+> Default: `'dist'`
+
+Indicates the directory where the production build files will be generated.
+
+#### `PUBLIC_PATH`
+
+> Type: `string` <br/>
+> Default: `'/'`
+
+Indicates the base URL your project bundle will be deployed at.
+
+#### `SOURCE_DIR`
+
+> Type: `string` <br/>
+> Default: `'src'`
+
+Indicates the directory where the source files are located.
+
+#### `TS_SUPPORT`
+
+> Type: `'true' | 'false' | none` <br/>
+> Default: `none`
+
+Indicates whether TypeScript support should be enabled. <br/>
+_`none` is equal to `false`_
+
+<br/>
+
+## 📓 Dependencies
+
+### Webpack:
+
+- [webpack](https://github.com/webpack/webpack)
+- [webpack-cli](https://github.com/webpack/webpack-cli)
+- [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+
+### Loaders:
+
+- Nunjucks
+
+  - [html-loader](https://github.com/webpack-contrib/html-loader)
+  - [njk-loader(internal)](./config/modules/njk-loader/index.js)
+    - [nunjucks](https://github.com/mozilla/nunjucks)
+
+- JavaScript
+
+  - [babel-loader](https://github.com/babel/babel-loader)
+    - [@babel/core](https://github.com/babel/babel)
+    - [@babel/preset-env](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
+
+- TypeScript
+
+  - [babel-loader](https://github.com/babel/babel-loader)
+    - [@babel/core](https://github.com/babel/babel)
+    - [@babel/preset-env](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
+  - [ts-loader](https://github.com/TypeStrong/ts-loader)
+    - [typescript](https://github.com/microsoft/TypeScript)
+
+- CSS
+
+  - [style-loader](https://github.com/webpack-contrib/style-loader)
+  - [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
+  - [css-loader](https://github.com/webpack-contrib/css-loader)
+  - [postcss-loader](https://github.com/webpack-contrib/postcss-loader)
+    - [postcss](https://github.com/postcss/postcss)
+    - [autoprefixer](https://github.com/postcss/autoprefixer)
+  - [sass-loader](https://github.com/webpack-contrib/sass-loader)
+    - [sass](https://github.com/sass/sass)
+
+- Assets
+
+  - [asset modules](https://webpack.js.org/guides/asset-modules)
+
+- SVG
+
+  - [svg-sprite-loader](https://github.com/JetBrains/svg-sprite-loader)
+  - [svgo-loader](https://github.com/svg/svgo-loader)
+
+- Optimization
+  - [thread-loader](https://github.com/webpack-contrib/thread-loader)
+
+### Plugins:
+
+- HTML
+
+  - [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin)
+
+- TypeScript
+
+  - [fork-ts-checker-webpack-plugin](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin)
+
+- CSS
+
+  - [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
+
+- Eslint
+
+  - [eslint-webpack-plugin](https://github.com/webpack-contrib/eslint-webpack-plugin)
+    - [ESLint](https://github.com/eslint/eslint)
+    - [@babel/core](https://github.com/babel/babel)
+    - [@babel/eslint-parser](https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser)
+    - [@typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser)
+    - [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
+
+- Stylelint
+
+  - [stylelint-webpack-plugin](https://github.com/webpack-contrib/stylelint-webpack-plugin)
+    - [postcss-sass](https://github.com/AleshaOleg/postcss-sass)
+    - [postcss-scss](https://github.com/postcss/postcss-scss)
+    - [StyleLint](https://github.com/stylelint/stylelint)
+
+- Terminal
+  - [TerminalClearPlugin(internal)](./config/modules/terminal-clear-plugin/index.js)
+
+### Other:
+
+- Git
+
+  - [lint-staged](https://github.com/lint-staged/lint-staged)
+
+- Code
+  - [prettier](https://prettier.io/)
+
+<br/>

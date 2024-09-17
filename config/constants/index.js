@@ -1,5 +1,5 @@
-const path = require('path');
-const CWD = process.cwd();
+const path = require('path')
+const CWD = process.cwd()
 
 module.exports = {
   /**
@@ -31,5 +31,5 @@ module.exports = {
    * The absolute path to the directory where the source files are located.
    * @const {String}
    */
-  SOURCE_DIR: path.resolve(CWD, process.env.SOURCE_DIR || 'app')
-};
+  SOURCE_DIR: path.resolve(CWD, process.env.SOURCE_DIR || 'src')
+}

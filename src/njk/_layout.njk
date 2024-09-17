@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="{{ lang | default('en', true) }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="transparent" />
+    <title>{{ '[Dev] ' if isDev }}{{ title }}</title>
+
+    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon/64x64.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon/48x48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/32x32.png" />
+    <link rel="icon" type="image/png" sizes="24x24" href="images/favicon/24x24.png" />
+    <link rel="icon" type="image/png" sizes="16х16" href="images/favicon/16х16.png" />
+
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://xsell.orangelabel.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Xsell.Money" />
+    <meta property="og:description" content="" />
+    <!-- Disabled url handling for the content attribute -->
+    <!-- webpackIgnore: true -->
+    <meta property="og:image" content="{{ ogImage }}" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="xsell.orangelabel.com" />
+    <meta property="twitter:url" content="https://xsell.orangelabel.com" />
+    <meta name="twitter:title" content="Xsell.Money" />
+    <meta name="twitter:description" content="" />
+    <!-- Disabled url handling for the content attribute -->
+    <!-- webpackIgnore: true -->
+    <meta name="twitter:image" content="{{ ogImage }}" />
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta
+      name="keywords"
+      content="Website design, website development, interface design, logo design, corporate identity, web site, promo site, landing page, award-winning design studio, logo development, graphic design, creative web design, brochure design, annual report design, client area, content management system, sporting events, automotive events, automotive social network, brand look, brand book, monochrome website, newspaper-style website, professional web design, top web design studio, Prague, New York, Europe"
+    />
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </head>
+  <body>
+    <main>{% block main %}{% endblock %}</main>
+  </body>
+</html>

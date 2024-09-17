@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // const path = require('path');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -31,57 +31,50 @@
 //   ]
 // };
 
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const htmlPlugin = require('./config/html.plugin');
+const njkPlugin = require('./config/njk.plugin');
 
 module.exports = {
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   entry: [
-    "webpack-hot-middleware/client?reload=true",
-    path.join(__dirname, "app/main.js"),
+    'webpack-hot-middleware/client?reload=true',
+    path.join(__dirname, 'app/main.js'),
   ],
   output: {
-    path: path.join(__dirname, "/dist/"),
-    filename: "[name].js",
-    publicPath: "/",
+    path: path.join(__dirname, '/dist/'),
+    filename: '[name]-[hash].min.js',
+    publicPath: '/',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "app/index.tpl.html",
-      inject: "body",
-      filename: "index.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: "app/about.tpl.html",
-      inject: "body",
-      filename: "about.html",
-    }),
+    ...njkPlugin,
+    ...htmlPlugin,
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("development"),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   module: {
     loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: "babel",
-        query: {
-          presets: ["es2015", "stage-0"],
-        },
-      },
+      // {
+      //   test: /\.jsx?$/,
+      //   exclude: /node_modules/,
+      //   loader: 'babel',
+      //   query: {
+      //     presets: ['es2015', 'stage-0'],
+      //   },
+      // },
       {
         test: /\.json?$/,
-        loader: "json",
+        loader: 'json',
       },
       {
         test: /\.css$/,
         loader:
-          "style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]",
+          'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
       },
     ],
   },

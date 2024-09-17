@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    Home
-  <a href="/about">About</a>
-    <div id="root"></div>
+   <main>{% block main %}{% endblock %}</main>
+  <script src="/main-{{ __webpack__.hash }}.min.js"></script></body>
+
   </body>
 </html>

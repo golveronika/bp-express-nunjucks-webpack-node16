@@ -2,9 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
+const htmlPlugin = require('./config/html.plugin');
+const njkPlugin = require('./config/njk.plugin');
 
 module.exports = {
   entry: [
@@ -15,18 +16,20 @@ module.exports = {
     filename: '[name]-[hash].min.js',
     publicPath: '/'
   },
+  module: {
+    loaders: [
+      {
+        test: /\.json?$/,
+        loader: 'json'
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+      }]
+  },
   plugins: [
+    ...njkPlugin,
+    ...htmlPlugin,
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'app/index.tpl.html',
-      inject: 'body',
-      filename: 'index.html'
-    }),
-    new HtmlWebpackPlugin({
-      template: 'app/about.tpl.html',
-      inject: 'body',
-      filename: 'about.html'
-    }),
     new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -42,22 +45,6 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
-  module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        "presets": ["es2015", "stage-0"]
-      }
-    }, {
-      test: /\.json?$/,
-      loader: 'json'
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
-    }]
-  },
   postcss: [
     require('autoprefixer')
   ]
